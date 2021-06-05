@@ -56,7 +56,12 @@
       var formData = getFormData(form);
       var data = formData.data;
 
-      // If a honeypot field is filled, assume it was done so by a spam bot.
+      // check for empty form content
+      if (!data.name || !data.email || !data.message) {
+          return false;
+      }
+
+      // if a honeypot field is filled, assume it was done so by a spam bot.
       if (formData.honeypot) {
         return false;
       }
